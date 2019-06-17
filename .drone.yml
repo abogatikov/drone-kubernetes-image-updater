@@ -1,0 +1,18 @@
+kind: pipeline
+name: drone-kubernetes-image-updater
+
+steps:
+  - name: docker-image
+    image: plugins/docker
+    settings:
+       username:
+         from_secret: DOCKER_USERNAME
+       password:
+         from_secret: DOCKER_PASSWORD
+       repo:
+         from_secret: DOCKER_REPO
+       dockerfile: Dockerfile
+       auto_tag: true
+    when:
+      event:
+       - tag
