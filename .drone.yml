@@ -2,6 +2,14 @@ kind: pipeline
 name: drone-kubernetes-image-updater
 
 steps:
+  - name: put_tags
+    image: alpine:3.9
+    commands:
+      - echo -n "$DRONE_TAG,latest" > .tags
+    when:
+      event:
+      - tag  
+
   - name: docker-image
     image: plugins/docker
     settings:
@@ -12,9 +20,7 @@ steps:
        repo:
          from_secret: DOCKER_REPO
        dockerfile: Dockerfile
-       tags:
-         - latest
-         - $DRONE_TAG
+       purge: true
     when:
       event:
        - tag
