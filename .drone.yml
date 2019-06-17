@@ -13,6 +13,7 @@ steps:
          from_secret: DOCKER_REPO
        dockerfile: Dockerfile
        auto_tag: true
+       tags: latest
     when:
       event:
        - tag
