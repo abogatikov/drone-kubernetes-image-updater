@@ -49,8 +49,7 @@ if [ -z ${PLUGIN_REPO} ]; then
 fi
 
 if [ -z ${PLUGIN_TAG} ]; then
-  echo "Option tag is required!"
-  exit 1
+  PLUGIN_TAG=$(cat /drone/src/.tag)
 fi
 
 kubectl config set-credentials ${PLUGIN_KUBERNETES_USER} --token=${KUBERNETES_TOKEN}
