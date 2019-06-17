@@ -49,7 +49,7 @@ if [ -z ${PLUGIN_REPO} ]; then
 fi
 
 if [ -z ${PLUGIN_TAG} ]; then
-  PLUGIN_TAG=$(cat /drone/src/.tag)
+ PLUGIN_TAG=$(cat /drone/src/.tags)
 fi
 
 kubectl config set-credentials ${PLUGIN_KUBERNETES_USER} --token=${KUBERNETES_TOKEN}
