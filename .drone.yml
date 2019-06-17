@@ -12,8 +12,9 @@ steps:
        repo:
          from_secret: DOCKER_REPO
        dockerfile: Dockerfile
-       auto_tag: true
-       tags: latest
+       tags:
+         - latest
+         - $DRONE_TAG
     when:
       event:
        - tag
