@@ -73,14 +73,15 @@ roleRef:
 
 ### Retrieve tokens and certificates
 
-1. Get token of secret `drone-deploy`
-   ```bash
-   kubectl -n web describe secret $(kubectl -n web get secret | grep drone-deploy | awk '{print $1}')
-   ```
+1. Get token of secret `drone`
+```bash
+kubectl -n web describe secret $(kubectl -n web get secret |grep drone |awk '{print $1}')
+```
 2. Get data of k8s cert
-   ```bash
-   kubectl -n web get secret $(kubectl -n web get secret | grep drone-deploy | awk '{print $1}') -o "jsonpath={.data['ca\.crt']}"
-   ```
+```bash
+SECRET_NAME=$(kubectl -n web get secret |grep drone |awk '{print $1}')
+kubectl -n web get secret $SECRET_NAME -o "jsonpath={.data['ca\.crt']}"
+```
 
 ## License
 
