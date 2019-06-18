@@ -2,7 +2,7 @@ kind: pipeline
 name: drone-kubernetes-image-updater
 
 steps:
-  - name: put_tags
+  - name: set-tags
     image: alpine:3.9
     commands:
       - echo -n "$DRONE_TAG,latest" > .tags
